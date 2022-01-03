@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Login - QuizApp{% endblock %}
+
+
+{% block body %}
+<style>
+    body {color:white;}
+</style>
+<center>
+    <h1>Login</h1>
+    <form method="post">
+        <p>username:</p>
+        <input type="text" name="username" placeholder="Type your username here" required>
+        <p>password:</p>
+        <input type="text" name="password" placeholder="Type your password here" required>
+        <br>
+        <br>
+        <button class="btn btn-light">Login</button>
+
+    </form>
+</center>
+{% endblock %}
