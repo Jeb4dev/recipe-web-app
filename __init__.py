@@ -19,9 +19,11 @@ def create_app():
     with app.app_context():
         from models import User
         from auth import account
+        from recipe import recipes
 
         # Register Blueprints
         app.register_blueprint(account, url_prefix='/account/')
+        app.register_blueprint(recipes, url_prefix='/recipe/')
 
         # Create Database Models
         db.create_all()
@@ -33,7 +35,7 @@ def create_app():
         # Error Management
         @app.errorhandler(404)
         def page_not_found(error):
-            return render_template("main.html")
+            return render_template("recipe.html")
 
         quest = User.query.filter_by(id=0).first()
         if not quest:
