@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ingredients.title}}{% endblock %}
+{% block title %}{{ingredients.dish_name}}{% endblock %}
 
 {% block custom_css %}
 <link rel="stylesheet" href="/static/css/valio.css">
@@ -16,11 +16,11 @@
                 <div class="PrintHeroWrapper-sc-1t0nd18 daYapA"><a class="LogoWrapper-sc-n5zu01 gkCTAQ logo"
                                                                    href=""><img
                         src="/ClientApp/build/static/media/valioLogo.e2c6eb2d.png" alt="Valio" width="100%"/></a>
-                    <h1 class="PrintTitle-sc-h5kfzh jTrHRm">{{ingredients.title}}</h1></div>
+                    <h1 class="PrintTitle-sc-h5kfzh jTrHRm">{{ingredients.dish_name}}</h1></div>
                 <section class="RecipeHeaderWrapper-sc-19fsov1 iBJlQK">
                     <header class="Header-sc-1me9z1i duyqa">
-                        <div class="ImageWrapper-sc-ldix2e kwsUNS"><img alt="{{ingredients.title}}"
-                                                                        src="{{ingredients.img}}"/>
+                        <div class="ImageWrapper-sc-ldix2e kwsUNS"><img alt="{{ingredients.dish_name}}"
+                                                                        src="{{ingredients.img_url}}"/>
                         </div>
                         <div class="MobileContentWrapper-sc-1lf4z7i comZED">
 <!--                            <div class="IconWrapper-sc-157jbdv drnnNM">-->
@@ -54,7 +54,7 @@
 <!--                                         alt="Tehnyt Jaana Valio Koekeittiöstä"-->
 <!--                                         class="ValioAuthorBadgeIconImage-sc-1drx393 bUnugr"/></div>-->
 <!--                            </div>-->
-                            <h1 class="Title-sc-nktazt jtoCbr">{{ingredients.title}}</h1>
+                            <h1 class="Title-sc-nktazt jtoCbr">{{ingredients.dish_name}}</h1>
                             <p class="Description-sc-5dz69c iLmtfb">{{ingredients.description}}</p></div>
                     </header>
                     <div class="Specifications-sc-1471dak bexqYQ">
@@ -76,11 +76,11 @@
                             <div class="PreparationBreakdownWrapper-sc-9v0axc eaCaKm">
                                 <dl class="BreakdownList-sc-18tvjek hMilHP">
                                     <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO">Preparation time</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP">{{ingredients.time.prep}}</dd>
+                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP">{{ingredients.prep_time}}</dd>
                                     <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO">cooking time</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP">{{ingredients.time.cook}}</dd>
+                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP">{{ingredients.cook_time}}</dd>
                                     <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO total-time">total time</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP total-time">{{ingredients.time.total}}</dd>
+                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP total-time">{{ingredients.total_time}}</dd>
                                 </dl>
                                 <hr>
                                 <dl class="BreakdownList-sc-18tvjek hMilHP">
@@ -131,7 +131,7 @@
                                 <div class="IngredientWrapper-sc-gnq42z glXeqM">
                                     <div class="HeaderContainerWrapper-sc-1sn2upy fXkwBp">
                                         <div class="HeaderContentLeft-sc-xu0cj9 cmNdbE"><h2
-                                                class="Header2-sc-s4djmv dguPRK medium-header">Incidents<span
+                                                class="Header2-sc-s4djmv dguPRK medium-header">ingredients<span
                                                 class="PrintPortion-sc-1oricz ewwgBm">{{ingredients.serving}}serving</span>
                                         </h2></div>
                                         <div class="HeaderContentRight-sc-80hs6f bDAozd">
