@@ -49,7 +49,7 @@ Like programs, recipes are a series of imperative steps which, if followed corre
 - [ ] Recipes cards show recipe creator.
 - [ ] User can upload their own recipe images to the server and it will be saved in some 3rd party storage.
 - [ ] Unit conversions (kg -> pounds for example)
-- [ ] Show saved recipes in different list.
+- ✔️ Show saved recipes in different list.
 
 
 ## Tech
