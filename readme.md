@@ -1,6 +1,6 @@
 # Recipe Storage Web App
 with recipe creation and automated recipe incrediants amount changing depending of how many person recipe serves.
-## Written in python using Flask
+#### Written in python using Flask
 
 ## Purpose
 This project was made as part of the weekly programming challenge hosted by [DevJam].
