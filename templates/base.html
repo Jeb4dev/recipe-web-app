@@ -34,6 +34,11 @@
                 <li class="nav-item disable-list">
                     <a class="nav-link" href="/recipe/create/" style="color:#ad2831;">Create</a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item disable-list">
+                    <a class="nav-link" href="/recipe/saved/" style="color:#ad2831;">Saved</a>
+                </li>
+                {% endif %}
             </ul>
             <div class="d-flex">
                 {% if current_user.is_authenticated %}
