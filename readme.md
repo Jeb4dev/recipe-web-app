@@ -1,6 +1,7 @@
 # Recipe Storage Web App
-with recipe creation and automated recipe incrediants amount changing depending of how many person recipe serves.
-#### Written in python using Flask
+### Written in python using Flask
+App contains recipe creation and automated recipe incrediants amount calculation depending of how many person recipe serves.
+
 
 ## Purpose
 This project was made as part of the weekly programming challenge hosted by [DevJam].
@@ -50,6 +51,7 @@ Like programs, recipes are a series of imperative steps which, if followed corre
 - [ ] Admin user can delete recipes.
 - [ ] Recipes cards show recipe creator.
 - [ ] User can upload their own recipe images to the server and it will be saved in some 3rd party storage.
+- [ ] Unit conversions (kg -> pounds for example)
 ^^^TODO^^
 
 
