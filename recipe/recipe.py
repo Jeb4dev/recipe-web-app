@@ -68,6 +68,8 @@ def create():
         new_recipe.difficulty = request.form.get('recipe_diff')
         new_recipe.serving = request.form.get('recipe_serving')
         new_recipe.img_url = request.form.get('img_name')
+        if not new_recipe.img_url:
+            new_recipe.img_url = "https://thumbs.dreamstime.com/b/error-page-template-website-template-reports-page-not-found-151438536.jpg"
         new_recipe.saves = 0
         new_recipe.tags = None
         new_recipe.allergens = None
