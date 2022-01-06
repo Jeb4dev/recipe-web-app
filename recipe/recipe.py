@@ -45,8 +45,8 @@ def create():
         new_recipe.serving = request.form.get('recipe_serving')
         new_recipe.img_url = request.form.get('img_name')
         new_recipe.saves = 0
-        new_recipe.tags = ""
-        new_recipe.allergens = ""
+        new_recipe.tags = None
+        new_recipe.allergens = None
 
         # Uploaded img
         img_upload = request.form.get('img_upload')
