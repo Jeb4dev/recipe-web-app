@@ -143,6 +143,7 @@ def create():
         db.session.add(new_user_recipe)
         db.session.commit()
 
+        return redirect(url_for('recipe.look', identifier=new_recipe.id))
     return render_template("create.html")
 
 
@@ -158,6 +159,13 @@ def look(identifier):
             print(recipe)
             recipe.tags = []
             recipe.allergens = []
+            if recipe.difficulty == 0:
+                recipe.difficulty = "Easy"
+            elif recipe.difficulty == 1:
+                recipe.difficulty = "Intermediate"
+            elif recipe.difficulty == 2:
+                recipe.difficulty = "Advanced"
+
             recipe.instructions = json.loads(recipe.instructions)
             recipe.menu = Dishes.query.filter_by(recipe_id=recipe_id).all()
             if current_user.is_authenticated:
