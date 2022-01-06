@@ -103,11 +103,11 @@ This project was part of weekly challenges hosted by [DevJam] and won't be updat
 Maybe you would like to work with us, hit me up and let's talk. :)
 
 ## Credits
-- [Valio](https://codepen.io/hakura/pen/ebglw) - HTML and CSS is mainly taken from valio website, please don't sue me.
-- [Card design](https://codepen.io/hakura/pen/ebglw) - Cars design
-- [Boostrap](https://codepen.io/hakura/pen/ebglw) - Some frontend elements like grids.
+- [Valio](https://www.valio.fi/reseptit/haku/#) - HTML and CSS is mainly taken from valio website, please don't sue me.
+- [Card design](https://www.quackit.com/css/grid/examples/css_grid_card_examples.cfm) - Cars design templte.
 - [Fontawesome](https://fontawesome.com/) - Icons
 
+Did I miss some credits, let me know and I will update them
 ## License
 MIT
 
