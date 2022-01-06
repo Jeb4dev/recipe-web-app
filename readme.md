@@ -34,7 +34,7 @@ Like programs, recipes are a series of imperative steps which, if followed corre
 ##### 🌟 Bonus features
 
 - ✔️ User can see a photo showing what the item looks like after it has been prepared.
-- ❌ User can search for a recipe not in the list of recipe titles by entering the meal name into a search box and clicking a 'Search' button. Any open source recipe API may be used as the source for recipes (see The MealDB below).
+- ❌ User can search for a recipe not in the list of recipe titles by entering the meal name into a search box and clicking a 'Search' button. Any open source recipe API may be used as the source for recipes.
 - ❌ User can see a list of recipes matching the search terms
 - ✔️ User can click the name of the recipe to display its recipe card.
 - ❌ User can see a warning message if no matching recipe was found. 
@@ -53,6 +53,7 @@ Like programs, recipes are a series of imperative steps which, if followed corre
 - [ ] Recipes cards show recipe creator.
 - [ ] User can upload their own recipe images to the server and it will be saved in some 3rd party storage.
 - [ ] Unit conversions (kg -> pounds for example)
+- [ ] Show saved recipes in different list.
 
 
 ## Tech
