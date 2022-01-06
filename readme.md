@@ -10,12 +10,7 @@ The project was made for learning purposes.
 The project was once againg very interesting and I learned lots of things like using css media print, lots of javascript, and for example using `white-space:no-wrap;`. Project included adding html elements via button clicks and using database relationships. 
 ## Screenshots and Demo
 ### [Live Demo](https://jeb-recipeapp.herokuapp.com/)
-List of all recipes:
-![image](https://user-images.githubusercontent.com/76889226/148412394-313de2d9-f7a6-4444-82cb-e3ebf0f9bad0.png)
-Recipe card of mustard recipe:
-![image](https://user-images.githubusercontent.com/76889226/148440706-00989551-5418-4761-82e7-1ec61319896f.png)
-Creating Recipe:
-![image](https://user-images.githubusercontent.com/76889226/148412736-3f150f37-ca4d-472b-b6a6-acc791ac17dd.png)
+![image](https://user-images.githubusercontent.com/76889226/148446624-e50610ff-7c71-413a-900d-47d6a54e6118.png)
 
 
 
