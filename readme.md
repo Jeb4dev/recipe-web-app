@@ -6,6 +6,13 @@ This project was made as part of the weekly programming challenge hosted by [Dev
 The project was made for learning purposes.
 ### What I learned
 tba. 
+All recipes
+![image](https://user-images.githubusercontent.com/76889226/148412394-313de2d9-f7a6-4444-82cb-e3ebf0f9bad0.png)
+One Recipe
+![image](https://user-images.githubusercontent.com/76889226/148412628-1a15daa0-f062-4504-9298-6d7bba5a1dc6.png)
+Creating Recipe
+![image](https://user-images.githubusercontent.com/76889226/148412736-3f150f37-ca4d-472b-b6a6-acc791ac17dd.png)
+
 
 ## [Live Demo](https://jeb-recipeapp.herokuapp.com/)
 
