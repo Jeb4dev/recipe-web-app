@@ -46,13 +46,13 @@ Like programs, recipes are a series of imperative steps which, if followed corre
 - ✔️ User can copy recipe link via button
 - ✔️ User can print recipe
 - ✔️ User can see times recipe takes to compleate, prepare and cook.
+##### ✨📋 __TODO__ Custom features (not part of the challenge)
 - [ ] User can add tags to recipes and sort all recipes by tags.
 - [ ] User can edit recipes they have made and admin user can edit all recipes
 - [ ] Admin user can delete recipes.
 - [ ] Recipes cards show recipe creator.
 - [ ] User can upload their own recipe images to the server and it will be saved in some 3rd party storage.
 - [ ] Unit conversions (kg -> pounds for example)
-^^^TODO^^
 
 
 ## Tech
