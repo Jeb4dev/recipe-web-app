@@ -183,43 +183,47 @@ def look(identifier):
 
 
 # add recipe to saved recipes
-@login_required
 @recipes.route('/<identifier>/save/', methods=['GET'])
 def save(identifier):
-    with db.session.no_autoflush:
-        recipe_id = identifier
-        recipe = Recipes.query.filter_by(id=recipe_id).first()
-        if not recipe:
-            return "error 404: no dish with that id was found"
+    if current_user.is_authenticated:
+        with db.session.no_autoflush:
+            recipe_id = identifier
+            recipe = Recipes.query.filter_by(id=recipe_id).first()
+            if not recipe:
+                return "error 404: no dish with that id was found"
 
-        liked = SavedRecipes.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
-        if liked:
-            liked.delete()
-            print(f"ERROR: save was already found with: user_id {current_user.id} and recipe_id {recipe_id}.")
-            return redirect(url_for("recipe.look", identifier=recipe_id))
-        else:
-            new_liked = SavedRecipes(user_id=current_user.id, recipe_id=recipe_id)
-            recipe.saves += 1
-            db.session.add(new_liked)
-            db.session.commit()
-            return redirect(url_for("recipe.look", identifier=recipe_id))
+            liked = SavedRecipes.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+            if liked:
+                liked.delete()
+                print(f"ERROR: save was already found with: user_id {current_user.id} and recipe_id {recipe_id}.")
+                return redirect(url_for("recipe.look", identifier=recipe_id))
+            else:
+                new_liked = SavedRecipes(user_id=current_user.id, recipe_id=recipe_id)
+                recipe.saves += 1
+                db.session.add(new_liked)
+                db.session.commit()
+                return redirect(url_for("recipe.look", identifier=recipe_id))
+    else:
+        return redirect(url_for('account.login'))
 
 
 # remove recipe to saved recipes
-@login_required
 @recipes.route('/<identifier>/unsave/', methods=['GET'])
 def unsave(identifier):
-    with db.session.no_autoflush:
-        recipe_id = identifier
-        recipe = Recipes.query.filter_by(id=recipe_id).first()
-        if not recipe:
-            return "ERROR 404: no dish with that id was found"
+    if current_user.is_authenticated:
+        with db.session.no_autoflush:
+            recipe_id = identifier
+            recipe = Recipes.query.filter_by(id=recipe_id).first()
+            if not recipe:
+                return "ERROR 404: no dish with that id was found"
 
-        liked = SavedRecipes.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
-        if liked:
-            recipe.saves -= 1
-            db.session.delete(liked)
-            db.session.commit()
-            return redirect(url_for("recipe.look", identifier=recipe_id))
-        else:
-            return f"ERROR 404: save was not found with: user_id {current_user.id} and recipe_id {recipe_id}."
+            liked = SavedRecipes.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+            if liked:
+                recipe.saves -= 1
+                db.session.delete(liked)
+                db.session.commit()
+                return redirect(url_for("recipe.look", identifier=recipe_id))
+            else:
+                return f"ERROR 404: save was not found with: user_id {current_user.id} and recipe_id {recipe_id}."
+    else:
+        return redirect(url_for('account.login'))
