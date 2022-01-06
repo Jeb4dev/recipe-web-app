@@ -28,6 +28,7 @@ function increase(serving, button) {
             amount = Number(amount)
             serving = Number(serving)
             amount = amount / updated_serving * (updated_serving + 1)
+            amount = amount.toFixed(3);
             amount = amount.toString()
             amounts[i].innerHTML = amount
           }
@@ -151,7 +152,7 @@ function increase(serving, button) {
                                             <div class="PortionCalculatorWrapper-sc-6xtlii lmAKZH ingredients-portion-count">
                                                 <button class="sc-dlnjPT EIiwg adjust-portion"
                                                         aria-label="-" type="button"
-                                                        onclick="alert('ok')">
+                                                        onclick="alert('this will be added later')">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                                          viewBox="0 0 26 26"><title>-</title>
                                                         <rect fill="#fff" x="5" y="12" width="16" height="2"
