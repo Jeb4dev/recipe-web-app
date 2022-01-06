@@ -21,7 +21,31 @@ def all_recipes():
                        "id": recipes[i].id,
                        }
         recipes_data.append(recipe_data)
-    return render_template("all.html", data=recipes_data)
+    return render_template("all.html", data=recipes_data, title="All Recipes")
+
+
+# recipe page
+@recipes.route('/saved/', methods=['GET'])
+def saved():
+    if current_user.is_authenticated:
+        recipes = Recipes.query.all()
+        saved = SavedRecipes.query.filter_by(user_id=current_user.id).all()
+        saveds = []
+        for i in range(len(saved)):
+            saveds.append(saved[i].recipe_id)
+        recipes_data = []
+        for i in range(len(recipes)):
+            if recipes[i].id in saveds:
+                recipe_data = {"name": recipes[i].dish_name,
+                               "img": recipes[i].img_url,
+                               "time": recipes[i].total_time,
+                               "saves": recipes[i].saves,
+                               "id": recipes[i].id,
+                               }
+                recipes_data.append(recipe_data)
+        return render_template("all.html", data=recipes_data, title="Saved Recipes")
+    else:
+        return redirect(url_for('account.login'))
 
 
 # create recipe page
@@ -44,6 +68,8 @@ def create():
         new_recipe.difficulty = request.form.get('recipe_diff')
         new_recipe.serving = request.form.get('recipe_serving')
         new_recipe.img_url = request.form.get('img_name')
+        if not new_recipe.img_url:
+            new_recipe.img_url = "https://thumbs.dreamstime.com/b/error-page-template-website-template-reports-page-not-found-151438536.jpg"
         new_recipe.saves = 0
         new_recipe.tags = None
         new_recipe.allergens = None
