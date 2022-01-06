@@ -44,30 +44,30 @@
   }
 </style>
 {% for i in range(0,30,4) %}
-<main class="grid" style="display:flex;padding:10px 100px;">
-    <article style="height:40vh; max-height:40vh; cursor:pointer;" onclick="window.location.href='/recipe/{{data[i].id}}/'">
+<main class="grid" style="display:flex;padding:10px 5vw;">
+    <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i].id}}/'">
         <img src="{{data[i].img}}" alt="What the item looks like after it has been prepared.">
         <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header">{{data[i].name}}</h2>
+          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i].name}}</h2>
           <p class="hMilHP">{{data[i].saves}} saves</p>
         </div>
     </article>
-    <article style="height:40vh; max-height:40vh; cursor:pointer;" onclick="window.location.href='/recipe/{{data[i+1].id}}/'">
+    <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i+1].id}}/'">
         <img src="{{data[i+1].img}}" alt="What the item looks like after it has been prepared.">
         <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header">{{data[i+1].name}}</h2>
+          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i+1].name}}</h2>
           <p class="hMilHP">{{data[i+1].saves}} saves</p>
         </div>
-    </article><article style="height:40vh; max-height:40vh; cursor:pointer;" onclick="window.location.href='/recipe/{{data[i+2].id}}/'">
+    </article><article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i+2].id}}/'">
         <img src="{{data[i+2].img}}" alt="What the item looks like after it has been prepared.">
         <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header">{{data[i+2].name}}</h2>
+          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i+2].name}}</h2>
           <p class="hMilHP">{{data[i+2].saves}} saves</p>
         </div>
-    </article><article style="height:40vh; max-height:40vh; cursor:pointer;" onclick="window.location.href='/recipe/{{data[i+3].id}}/'">
+    </article><article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i+3].id}}/'">
         <img src="{{data[i+3].img}}" alt="What the item looks like after it has been prepared.">
         <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header">{{data[i+3].name}}</h2>
+          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i+3].name}}</h2>
           <p class="hMilHP">{{data[i+3].saves}} saves</p>
         </div>
     </article>

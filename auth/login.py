@@ -19,7 +19,7 @@ def login():
         else:
             if user.check_password(password):
                 login_user(user, remember=True)
-                return redirect(url_for('recipe.look'))
+                return redirect(url_for('recipe.all_recipes'))
             else: return redirect(url_for('account.login'))
 
     return render_template("login.html")
@@ -30,4 +30,4 @@ def login():
 @account.route('/logout/', methods=['GET', 'POST'])
 def logout():
     logout_user()
-    return redirect(url_for('quiz.all_quiz'))
+    return redirect(url_for('recipe.all_recipes'))
