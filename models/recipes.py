@@ -46,7 +46,7 @@ class Ingredients(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    ingredient = db.Column(db.String)
-    amount = db.Column(db.String)
-    unit = db.Column(db.String)
+    ingredient = db.Column(db.String, default="")
+    amount = db.Column(db.String, default="")
+    unit = db.Column(db.String, default="")
     dish_id = db.Column(db.Integer, db.ForeignKey('dish.id'), nullable=False)

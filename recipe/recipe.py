@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from recipe import recipes
 from models import Recipes, Dishes, Ingredients
-from models import User, UserRecipes
+from models import User, UserRecipes, SavedRecipes
 from __init__ import db
 
 
@@ -155,6 +155,9 @@ def create():
 
     if request.method == "POST":
         user_id = 0
+        if current_user.is_authenticated:
+            user_id = current_user.id
+
         print(request.form)
 
         new_recipe = Recipes(user_id=user_id)
@@ -251,6 +254,7 @@ def create():
 
                         i += 1
                     else:
+                        print(f'FAILED to find: {j}_ing_name_{i}')
                         break
                     db.session.add(new_dishes)
 
@@ -268,8 +272,8 @@ def create():
 
 
 # recipe page
-@recipes.route('/example2/', methods=['GET', 'POST'])
-def look():
+@recipes.route('/<identifier>/', methods=['GET', 'POST'])
+def look(identifier):
     # ingredients = {"dish_name": "Poronkäristys ja ruskistettu pottuvoi",
     #                "menu": [
     #                    {"name": "Poronkäristys",
@@ -323,13 +327,67 @@ def look():
     #                "allergens": ["egg"],
     #                "img_url": "https://cdn.valio.fi/mediafiles/aec4ad8c-e390-41ba-89e8-dddb42fcbebb/1000x752-recipe-hero/4x3/poronkaristys-ja-ruskistettu-pottuvoi.jpg"
     #                }
-    with db.session.no_autoflush:
-        recipe_id = 26
-        recipe = Recipes.query.filter_by(id=recipe_id).first()
-        print(recipe)
-        recipe.tags = []
-        recipe.allergens = []
-        recipe.instructions = json.loads(recipe.instructions)
-        recipe.menu = Dishes.query.filter_by(recipe_id=recipe_id).all()
-        return render_template("recipe.html", ingredients=recipe)
+    try:
+        with db.session.no_autoflush:
+            recipe_id = identifier
+            recipe = Recipes.query.filter_by(id=recipe_id).first()
+            if not recipe:
+                return redirect(url_for('recipe.look', identifier=1))
+            print(recipe)
+            recipe.tags = []
+            recipe.allergens = []
+            recipe.instructions = json.loads(recipe.instructions)
+            recipe.menu = Dishes.query.filter_by(recipe_id=recipe_id).all()
+            if current_user.is_authenticated:
+                user_id = current_user.id
+                liked = SavedRecipes.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+                if liked:
+                    recipe.saved = True
+                else:
+                    recipe.saved = False
+            else:
+                recipe.saved = False
+            return render_template("recipe.html", ingredients=recipe)
+    except TypeError:
+        return redirect(url_for('recipe.look', identifier=1))
 
+
+# add recipe to saved recipes
+@login_required
+@recipes.route('/<identifier>/save/', methods=['GET'])
+def save(identifier):
+    with db.session.no_autoflush:
+        recipe_id = identifier
+        recipe = Recipes.query.filter_by(id=recipe_id).first()
+        if not recipe:
+            return "error 404: no dish with that id was found"
+
+        liked = SavedRecipes.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+        if liked:
+            liked.delete()
+            print(f"ERROR: save was already found with: user_id {current_user.id} and recipe_id {recipe_id}.")
+            return redirect(url_for("recipe.look", identifier=recipe_id))
+        else:
+            new_liked = SavedRecipes(user_id=current_user.id, recipe_id=recipe_id)
+            db.session.add(new_liked)
+            db.session.commit()
+            return redirect(url_for("recipe.look", identifier=recipe_id))
+
+
+# remove recipe to saved recipes
+@login_required
+@recipes.route('/<identifier>/unsave/', methods=['GET'])
+def unsave(identifier):
+    with db.session.no_autoflush:
+        recipe_id = identifier
+        recipe = Recipes.query.filter_by(id=recipe_id).first()
+        if not recipe:
+            return "ERROR 404: no dish with that id was found"
+
+        liked = SavedRecipes.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+        if liked:
+            db.session.delete(liked)
+            db.session.commit()
+            return redirect(url_for("recipe.look", identifier=recipe_id))
+        else:
+            return f"ERROR 404: save was not found with: user_id {current_user.id} and recipe_id {recipe_id}."

@@ -19,7 +19,7 @@ def login():
         else:
             if user.check_password(password):
                 login_user(user, remember=True)
-                return redirect(url_for('quiz.all_quiz'))
+                return redirect(url_for('recipe.look'))
             else: return redirect(url_for('account.login'))
 
     return render_template("login.html")

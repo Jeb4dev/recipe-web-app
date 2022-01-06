@@ -15,17 +15,31 @@ var instruction_index = 1;
 function add_ingredient_line(element) {
     var line = document.createElement('div');
     var e = element.parentElement.parentElement.parentElement.children
-    console.log(e)
 
     for (let i = 0; i < e.length; i++) {
-        if ("ingredient_table" == e[i].className) {var x = e[i]; console.log("found")}
+        if ("ingredient_table" == e[i].className) {var x = e[i]}
     }
 
     ingredient_table = x;
 
+    var c = x.children
+    var z = c[0].innerHTML
+    let begin_str = '<input type="text" name="'
+    let position_end = z.search("_ing_name")
+    let position_begin = z.search(begin_str) + begin_str.length
+    let num_length = position_end - position_begin
+    let g = ""
+    for (let i = 0; i < num_length; i++) {
+        g = g + z[position_begin+i]
+    }
+    current_meal_index = g
+
+    for (let i = 0; i < c.length; i++) {
+        if ("input_field" == c[i].className) {var x = c[i]; console.log("found", c[i])}
+    }
 
     line.className = "container"
-    line.innerHTML = '<div class="ingredient"><input type="text" name="ing_name_' + ing_index + '" class="input_field" /><br><br></div><div class="amount"><input type="text" name="ing_amount_' + ing_index + '" class="input_field" /><br><br></div><div class="unit"><input type="text" name="ing_unit_' + ing_index + '" class="input_field" /><br><br></div>'
+    line.innerHTML = '<div class="ingredient"><input type="text" name="' + current_meal_index + '_ing_name_' + ing_index + '" class="input_field" /><br><br></div><div class="amount"><input type="text" name="' + current_meal_index + '_ing_amount_' + ing_index + '" class="input_field" /><br><br></div><div class="unit"><input type="text" name="' + current_meal_index + '_ing_unit_' + ing_index + '" class="input_field" /><br><br></div>'
     ing_index = ing_index + 1
     ingredient_table.appendChild(line)
 }

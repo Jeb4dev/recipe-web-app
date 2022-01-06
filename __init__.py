@@ -35,7 +35,7 @@ def create_app():
         # Error Management
         @app.errorhandler(404)
         def page_not_found(error):
-            return render_template("recipe.html")
+            return "404"
 
         quest = User.query.filter_by(id=0).first()
         if not quest:
