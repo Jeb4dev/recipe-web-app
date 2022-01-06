@@ -26,19 +26,29 @@ Creating Recipe
 #### 📝 Project Description
 Like programs, recipes are a series of imperative steps which, if followed correctly, result in a tasty dish.
 ##### 📑User Stories
-- [ ] User can see a list of recipe titles ... ✔️
-- [ ] User can click a recipe title to display a recipe card containing the recipe title, meal type (breakfast, lunch, supper, or snack), number of people it serves, its difficulty level (beginner, intermediate, advanced), the list of ingredients (including their amounts), and the preparation steps.
+- ✔️ User can see a list of recipe titles
+- ✔️ User can click a recipe title to display a recipe card containing the recipe title, meal type (breakfast, lunch, supper, or snack), number of people it serves, its difficulty level (beginner, intermediate, advanced), the list of ingredients (including their amounts), and the preparation steps.
 ##### 🌟 Bonus features
 
-- [ ] User can see a photo showing what the item looks like after it has been prepared.
+- ✔️ User can see a photo showing what the item looks like after it has been prepared.
 - [ ] User can search for a recipe not in the list of recipe titles by entering the meal name into a search box and clicking a 'Search' button. Any open source recipe API may be used as the source for recipes (see The MealDB below).
 - [ ] User can see a list of recipes matching the search terms
-- [ ] User can click the name of the recipe to display its recipe card.
+- ✔️ User can click the name of the recipe to display its recipe card.
 - [ ] User can see a warning message if no matching recipe was found. 
-- [ ] User can click a 'Save' button on the cards for recipes located through the API to save a copy to this apps recipe file or database.
+- ✔️ User can click a 'Save' button on the cards for recipes located through the API to save a copy to this apps recipe file or __database__.
 
 ##### ✨ Custom features (not part of the challenge)
-- [ ] tba.
+- ✔️ Automatical adding and reducing (not compleated yet) incrediants for certain amount of servings. 
+- ✔️ User can create complicated recipes with unlimited ingrediants.
+- ✔️ User can copy recipe link via button
+- ✔️ User can print recipe
+- ✔️ User can see times recipe takes to compleate, prepare and cook.
+- [ ] User can add tags to recipes and sort all recipes by tags.
+- [ ] User can edit recipes they have made and admin user can edit all recipes
+- [ ] Admin user can delete recipes.
+- [ ] Recipes cards show recipe creator.
+^^^TODO^^
+
 
 ## Tech
 
@@ -77,7 +87,12 @@ run app.py
 python app.py
 ```
 ### Deployment
-App is hosted in heroku. Use `HEROKU` branch for heroku deployment as it also contains `Procfile`.
+App is hosted in Heroku.  The deployment requires `Procfile`.
+
+## Database
+for Database is used postresql and flask-sqlalchemy.
+Database structure
+![image](https://user-images.githubusercontent.com/76889226/148434091-1ed42aa8-95e4-46de-b509-74d62432c050.png)
 
 
 ## Contribute?
@@ -86,13 +101,16 @@ This project was part of weekly challenges hosted by [DevJam] and won't be updat
 Maybe you would like to work with us, hit me up and let's talk. :)
 
 ## Credits
-- [Scoreboard design](https://codepen.io/hakura/pen/ebglw) - Leaderboard design
+- [Valio](https://codepen.io/hakura/pen/ebglw) - HTML and CSS is mainly taken from valio website, please don't sue me.
 - [Card design](https://codepen.io/hakura/pen/ebglw) - Cars design
 - [Boostrap](https://codepen.io/hakura/pen/ebglw) - Some frontend elements like grids.
 - [Fontawesome](https://fontawesome.com/) - Icons
 
 ## License
 MIT
+
+## Disclamer
+Images and text (recipes) may be copyrighted.
 
 
    [Flask]: <https://flask.palletsprojects.com/en/2.0.x/>
