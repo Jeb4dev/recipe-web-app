@@ -7,7 +7,7 @@ The project was made for learning purposes.
 ### What I learned
 tba. 
 
-## [Live Demo](https://example.com/)
+## [Live Demo](https://jeb-recipeapp.herokuapp.com/)
 
 
 

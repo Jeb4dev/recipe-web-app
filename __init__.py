@@ -35,7 +35,7 @@ def create_app():
         # Error Management
         @app.errorhandler(404)
         def page_not_found(error):
-            return "404"
+            return redirect(url_for('recipe.all_recipes'))
 
         quest = User.query.filter_by(id=0).first()
         if not quest:

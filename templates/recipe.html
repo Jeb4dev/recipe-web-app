@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/static/css/valio.css">
 
 <script>
+let updated_serving = false
 function copy_url() {
     var dummy = document.createElement('input'),
         text = window.location.href;
@@ -15,6 +16,27 @@ function copy_url() {
     dummy.select();
     document.execCommand('copy');
     document.body.removeChild(dummy);
+}
+
+function increase(serving, button) {
+        if (updated_serving == false) {updated_serving = Number(serving)}
+        let amounts = document.getElementsByClassName("ing_amount");
+        for (let i = 0; i < amounts.length; i++) {
+          let amount = amounts[i].innerHTML
+          isNum = /\d/.test(amount);
+          if (isNum) {
+            amount = Number(amount)
+            serving = Number(serving)
+            amount = amount / updated_serving * (updated_serving + 1)
+            amount = amount.toString()
+            amounts[i].innerHTML = amount
+          }
+        }
+
+
+        updated_serving = updated_serving + 1
+        document.getElementById("serving_span").innerHTML = updated_serving
+        document.getElementById("serving_span_1").innerHTML = updated_serving + " serving"
 }
 </script>
 
@@ -123,7 +145,7 @@ function copy_url() {
                                     <div class="HeaderContainerWrapper-sc-1sn2upy fXkwBp">
                                         <div class="HeaderContentLeft-sc-xu0cj9 cmNdbE"><h2
                                                 class="Header2-sc-s4djmv dguPRK medium-header">ingredients<span
-                                                class="PrintPortion-sc-1oricz ewwgBm">{{ingredients.serving}} serving</span>
+                                                class="PrintPortion-sc-1oricz ewwgBm" id="serving_span_1">{{ingredients.serving}} serving</span>
                                         </h2></div>
                                         <div class="HeaderContentRight-sc-80hs6f bDAozd">
                                             <div class="PortionCalculatorWrapper-sc-6xtlii lmAKZH ingredients-portion-count">
@@ -136,10 +158,10 @@ function copy_url() {
                                                               rx="1"></rect>
                                                     </svg>
                                                 </button>
-                                                <div class="PortionText-sc-c9mfho eovgOX">{{ingredients.serving}} serving</div>
+                                                <div class="PortionText-sc-c9mfho eovgOX" ><label id="serving_span">{{ingredients.serving}}</label> serving</div>
                                                 <button class="sc-dlnjPT EIiwg adjust-portion"
                                                         aria-label="+" type="button"
-                                                        onclick="alert('ok')">
+                                                        onclick="increase('{{ingredients.serving}}')">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                                          viewBox="0 0 26 26"><title>+</title>
                                                         <path fill="#fff"
