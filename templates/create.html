@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}New | RecipeApp{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="/static/css/valio.css">
+
+
+
+<script>
+var meal_index = 0;
+var ing_index = 1;
+var instruction_index = 1;
+
+function add_ingredient_line(element) {
+    var line = document.createElement('div');
+    var e = element.parentElement.parentElement.parentElement.children
+    console.log(e)
+
+    for (let i = 0; i < e.length; i++) {
+        if ("ingredient_table" == e[i].className) {var x = e[i]; console.log("found")}
+    }
+
+    ingredient_table = x;
+
+
+    line.className = "container"
+    line.innerHTML = '<div class="ingredient"><input type="text" name="ing_name_' + ing_index + '" class="input_field" /><br><br></div><div class="amount"><input type="text" name="ing_amount_' + ing_index + '" class="input_field" /><br><br></div><div class="unit"><input type="text" name="ing_unit_' + ing_index + '" class="input_field" /><br><br></div>'
+    ing_index = ing_index + 1
+    ingredient_table.appendChild(line)
+}
+
+function toggleElement(id) {
+  console.log(id)
+  var z = document.getElementById(id);
+  z = id
+  var y = z.parentElement.parentElement.children
+  for (let i = 0; i < y.length; i++) {
+    if ("ingredient_table" == y[i].className) {var x = y[i]}
+    }
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function add_meal_line() {
+    console.log("meals")
+    var meal_line = document.createElement('div');
+    meals = document.getElementById("meals");
+
+    meal_line.className = "meal"
+    meal_index = meal_index + 1
+    meal_line.innerHTML = '<h3 class="hFMetU small-header"> Meal name </h3><input type="text" name="meal_name_' + meal_index + '" class="input_field" placeholder="Mix eggs and sugar for 5 minutes..." required/><br><br><h3 class="hFMetU small-header"> <label id="xyz" onclick="toggleElement(this)">Meal ingredients</label> <label class="input_help" title="Add more ingredient lines."><button class="sc-dlnjPT EIiwg adjust-portion"aria-label="+" type="button"onclick="add_ingredient_line(this)"style="float:right;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"viewBox="0 0 26 26"><title>Add new instructions line.</title><path fill="#fff"d="M6 12h14a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"></path><path fill="#fff"d="M14 6v14a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0z"></path></svg></button></label></h3><br><br><div class="ingredient_table" ><div class="container"><div class="ingredient"><h3 class="hFMetU small-header"> Incrediant <label class="input_help" title="ingredient name">?</label></h3><input type="text" name="' + meal_index + '_ing_name" class="input_field" required/><br><br></div><div class="amount"><h3 class="hFMetU small-header"> Amount <label class="input_help" title="amount of ingredient">?</label></h3><input type="text" name="' + meal_index + '_ing_amount" class="input_field" required/><br><br></div><div class="unit"><h3 class="hFMetU small-header"> Unit <label class="input_help" title="unit of ingredient amount">?</label></h3><input type="text" name="' + meal_index + '_ing_unit" class="input_field" required/><br><br></div></div><div class="container"><div class="ingredient"><input type="text" name="' + meal_index + '_ing_name_0" class="input_field" required/><br><br></div><div class="amount"><input type="text" name="' + meal_index + '_ing_amount_0" class="input_field" required/><br><br></div><div class="unit"><input type="text" name="' + meal_index + '_ing_unit_0" class="input_field" required/><br><br></div></div></div></div>'
+    meals.appendChild(meal_line)
+}
+
+function newInstructionLine() {
+        var instruction_line = document.createElement('div');
+        var instruction_table = document.getElementById("instruction_table");
+
+        instruction_line.innerHTML = '<input type="text" name="recipe_instruction_' + instruction_index + '" class="input_field instruction" placeholder="Leave blank to not include..."/><br><br>'
+        instruction_index = instruction_index + 1
+        instruction_table.appendChild(instruction_line)
+}
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div id="root">
+    <div class="AppContainer-sc-1cey94w gsfJIy">
+        <div class="ContentWrapper-sc-1ty62xk hgKryJ">
+            <div class="PageWrapper-sc-3x8egk jvkFGd">
+                <section class="RecipeHeaderWrapper-sc-19fsov1 iBJlQK">
+                    <header class="Header-sc-1me9z1i duyqa">
+                        <h1 class="Title-sc-nktazt create_header">Add New Recipe</h1>
+                    </header>
+                </section>
+
+
+                <form method="post">
+                    <h2 class="dguPRK medium-header"> General Info </h2>
+                    <hr>
+                    <h3 class="hFMetU small-header"> Recipe Name </h3>
+                    <input type="text" name="recipe_name" class="input_field" required/>
+                    <br><br>
+                    <h3 class="hFMetU small-header"> Recipe Description </h3>
+                    <textarea name="recipe_desc" class="input_field" required></textarea>
+                    <br><br>
+                    <h3 class="hFMetU small-header"> Difficulty <label class="input_help" title="How difficult this recipe is?">?</label></h3>
+                    <select name="recipe_diff" class="input_field">
+                        <option value="0">Easy</option>
+                        <option value="1">Intermediate</option>
+                        <option value="2">Advanced</option>
+                    </select>
+                    <br><br>
+                    <h3 class="hFMetU small-header"> Serving <label class="input_help" title="How many people this serves?">?</label></h3>
+                    <input type="number" name="recipe_serving" class="input_field" min="1" max="1000" value="4" required/>
+                    <br><br>
+                    <h3 class="hFMetU small-header"> Recipe Image </h3>
+                    <div class="container_2">
+                                  <div class="url">
+                                      <h3 class="hFMetU small-header"> url <label class="input_help" title="ingredient name">?</label></h3>
+                                      <input type="url" name="img_name" class="input_field"/><br><br>
+                                  </div>
+                                  <div class="upload">
+                                      <h3 class="hFMetU small-header"> Upload <label class="input_help" title="amount of ingredient">?</label></h3>
+                                      <input type="file" id="myFile" name="img_upload">
+                                  </div>
+                    </div>
+                    <h2 class="dguPRK medium-header form_header"> Time </h2>
+                    <hr>
+                    <h3 class="hFMetU small-header"> Preparation <label class="input_help" title="How much time it takes to prepare?">?</label></h3>
+                    <input type="text" name="recipe_preptime" class="input_field" placeholder="20 min" required/>
+                    <br><br>
+                    <h3 class="hFMetU small-header"> Cooking <label class="input_help" title="How much time it takes to cook?">?</label></h3>
+                    <input type="text" name="recipe_cooktime" class="input_field" placeholder="1 h" required/>
+                    <br><br>
+                    <h3 class="hFMetU small-header"> Total <label class="input_help" title="How much time it takes in total?">?</label></h3>
+                    <input type="text" name="recipe_totaltime" class="input_field" placeholder="1 h 20 min" required/>
+
+                    <h2 class="dguPRK medium-header form_header"> Instructions <label class="input_help" title="Instructions of how to complete recipe.">?</label></h2>
+                    <hr>
+                    <button class="sc-dlnjPT EIiwg adjust-portion"
+                            aria-label="+" type="button"
+                            onclick="newInstructionLine()"
+                            style="float:right;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                             viewBox="0 0 26 26"><title>Add new instructions line.</title>
+                            <path fill="#fff"
+                                  d="M6 12h14a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"></path>
+                            <path fill="#fff"
+                                  d="M14 6v14a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0z"></path>
+                        </svg>
+                    </button> <br><br>
+                    <div id="instruction_table">
+                        <input type="text" name="recipe_instruction_0" class="input_field instruction" placeholder="Mix eggs and sugar for 5 minutes..." required/><br><br>
+                    </div>
+
+                    <h2 class="dguPRK medium-header form_header"> Meals <label class="input_help" title="Recipe can include multiple sections like dough and topping.">?</label><button class="sc-dlnjPT EIiwg adjust-portion"
+                                aria-label="+" type="button"
+                                onclick="add_meal_line()"
+                                style="float:right;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                 viewBox="0 0 26 26"><title>Add new instructions line.</title>
+                                <path fill="#fff"
+                                      d="M6 12h14a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"></path>
+                                <path fill="#fff"
+                                      d="M14 6v14a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0z"></path>
+                            </svg>
+                        </button></h2>
+                    <hr>
+                    <div id="meals">
+                        <div class="meal">
+                            <h3 class="hFMetU small-header"> Meal name </h3>
+                            <input type="text" name="meal_name_0" class="input_field" placeholder="Mix eggs and sugar for 5 minutes..." required/><br><br>
+                            <h3 class="hFMetU small-header"> <label onclick="toggleElement(this)">Meal ingredients</label> <label class="input_help" title="Add more ingredient lines."><button class="sc-dlnjPT EIiwg adjust-portion"
+                                    aria-label="+" type="button"
+                                    onclick="add_ingredient_line(this)"
+                                    style="float:right;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                     viewBox="0 0 26 26"><title>Add new instructions line.</title>
+                                    <path fill="#fff"
+                                          d="M6 12h14a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"></path>
+                                    <path fill="#fff"
+                                          d="M14 6v14a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0z"></path>
+                                </svg>
+                            </button></label></h3>
+                                <br><br>
+
+                            <div class="ingredient_table" >
+                                <div class="container">
+                                  <div class="ingredient">
+                                      <h3 class="hFMetU small-header"> Incrediant <label class="input_help" title="ingredient name">?</label></h3>
+                                      <input type="text" name="0_ing_name" class="input_field" required/><br><br>
+                                  </div>
+                                  <div class="amount">
+                                      <h3 class="hFMetU small-header"> Amount <label class="input_help" title="amount of ingredient">?</label></h3>
+                                      <input type="text" name="0_ing_amount" class="input_field" required/><br><br>
+                                  </div>
+                                  <div class="unit">
+                                      <h3 class="hFMetU small-header"> Unit <label class="input_help" title="unit of ingredient amount">?</label></h3>
+                                      <input type="text" name="0_ing_unit" class="input_field" required/><br><br>
+                                  </div>
+                                </div>
+                                <div class="container">
+                                  <div class="ingredient">
+                                      <input type="text" name="0_ing_name_0" class="input_field" required/><br><br>
+                                  </div>
+                                  <div class="amount">
+                                      <input type="text" name="0_ing_amount_0" class="input_field" required/><br><br>
+                                  </div>
+                                  <div class="unit">
+                                      <input type="text" name="0_ing_unit_0" class="input_field" required/><br><br>
+                                  </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="sc-eCApGN iIvKNf ga-add-recipe-to-shopping-list" type="submit" style="margin:50px 0; text-align:center;">Create Recipe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
