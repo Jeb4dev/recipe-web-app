@@ -709,12 +709,12 @@
     background:#eee;
     height:1px;
     width:100%;
-    display:block;
+    display:none;
 }
 /*!sc*/
  @media (min-width:62.5em){
     .fTdYCr{
-        display:block;
+        display:none;
     }
 }
 /*!sc*/
@@ -2509,7 +2509,7 @@
 }
 /*!sc*/
  .ewwgBm{
-    display:block;
+    display:none;
 }
 /*!sc*/
  @media print{
@@ -2860,6 +2860,11 @@
 /*!sc*/
  @media (min-width:90em){
     .jUlxLL{
+        padding:20px 60px 20px 0px;
+    }
+}
+ @media (min-width:90em){
+    .jUlxLC{
         padding:20px 60px;
     }
 }
