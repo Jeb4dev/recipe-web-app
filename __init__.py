@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from os import environ, path
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -41,6 +42,14 @@ def create_app():
         if not quest:
             new_user = User(id=0, username="Guest")
             new_user.set_password("password")
+            db.session.add(new_user)
+            db.session.commit()
+            print("Quest user created")
+        admin = User.query.filter_by(id=69420).first()
+        if not admin:
+            ADMIN_PSWD = environ.get('ADMIN_PSWD') or 'password'
+            new_user = User(id=69420, username="Admin")
+            new_user.set_password(ADMIN_PSWD)
             db.session.add(new_user)
             db.session.commit()
             print("Quest user created")

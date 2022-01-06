@@ -253,3 +253,31 @@ def unsave(identifier):
                 return f"ERROR 404: save was not found with: user_id {current_user.id} and recipe_id {recipe_id}."
     else:
         return redirect(url_for('account.login'))
+
+
+# Admin page
+@recipes.route('/admin/', methods=['GET', 'POST'])
+def admin():
+    if current_user.is_authenticated:
+        if current_user.id == 69420:
+            if request.method == "POST":
+                recipe_id_to_delete = request.form.get('recipe_id_to_delete')
+                with db.session.no_autoflush:
+                    recipe = Recipes.query.filter_by(id=recipe_id_to_delete).first()
+                    if not recipe:
+                        return "ERROR 404: no dish with that id was found"
+                    dices = Dishes.query.filter_by(recipe_id=recipe_id_to_delete).all()
+                    for dice in dices:
+                        ings = Ingredients.query.filter_by(dish_id=dice.id).all()
+                        for ing in ings:
+                            db.session.delete(ing)
+                        db.session.delete(dice)
+                    db.session.delete(recipe)
+                    db.session.commit()
+                    return redirect(url_for('recipe.all_recipes'))
+            else:
+                return render_template("delete.html")
+
+        return redirect(url_for('recipe.all_recipes'))
+    else:
+        return redirect(url_for('recipe.all_recipes'))

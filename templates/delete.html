@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Admin - RecipeApp{% endblock %}
+
+
+{% block body %}
+<style>
+    body {color:#226;}
+</style>
+<center>
+<h1>Admin</h1>
+<div>
+    <h3>Delete</h3>
+
+    <form method="post">
+        <p>Recipe ID <- delete:</p>
+        <input type="number" name="recipe_id_to_delete" placeholder="Type id of recipe to delete here" required maxlength="32">
+        <br>
+        <br>
+        <button class="btn btn-light">DELETE recipe FOREVER</button>
+
+    </form>
+</div>
+
+</center>
+{% endblock %}
