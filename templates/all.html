@@ -43,7 +43,8 @@
   width: 100%;
   }
 </style>
-{% for i in range(0,30,4) %}
+
+{% for i in range(0,data|length,4) %}
 <main class="grid" style="display:flex;padding:10px 5vw;">
     <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i].id}}/'">
         <img src="{{data[i].img}}" alt="What the item looks like after it has been prepared.">
