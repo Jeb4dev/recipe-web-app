@@ -1,11 +1,11 @@
 # Recipe web app
-Recipe web app coded in python using flask framework.
+Recipe storage web app with recipe creation and automated recipe incrediants amount changing depending of how many person recipe serves.
 
 ## Purpose
 This project was made as part of the weekly programming challenge hosted by [DevJam].
 The project was made for learning purposes.
 ### What I learned
-tba. 
+The project was once againg very interesting and I learned lots of things like using css media print, lots of javascript, and for example using `white-space:no-wrap;`. Project included adding html elements via button clicks and using database relationships. 
 All recipes
 ![image](https://user-images.githubusercontent.com/76889226/148412394-313de2d9-f7a6-4444-82cb-e3ebf0f9bad0.png)
 One Recipe
@@ -47,6 +47,7 @@ Like programs, recipes are a series of imperative steps which, if followed corre
 - [ ] User can edit recipes they have made and admin user can edit all recipes
 - [ ] Admin user can delete recipes.
 - [ ] Recipes cards show recipe creator.
+- [ ] User can upload their own recipe images to the server and it will be saved in some 3rd party storage.
 ^^^TODO^^
 
 
