@@ -41,12 +41,15 @@
                 </li>
                 {% endif %}
             </ul>
-            <div class="navbar-nav me-auto ">
+            <div class="navbar-nav">
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Soon..." aria-label="Search" title="To be added later" style="min-width:70%;" disabled>
                     <button class="btn btn-outline-danger" type="submit" style="color:#ad2831; border-color:#ad2831; margin-right:200px;" disabled>Search</button>
                 </form>
-                <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+            </div>
+
+            <div class="navbar-nav">
+                <div class="navbar-nav">
                     {% if current_user.is_authenticated %}
                         <a class="nav-link" href="/account/logout" title="Logout">
                             <i class="fa fa-sign-out" style="color:#ad2831;"></i>
