@@ -194,7 +194,7 @@
 }
 @media print{
     .jtoCbr{
-        display:none;
+        display:block;
     }
 }
 /*!sc*/
@@ -2915,6 +2915,11 @@
         display:block;
         padding:0;
         margin:0;
+    }
+}
+@media print{
+    .navbar-brand{
+        display:none;
     }
 }
 /*!sc*/
