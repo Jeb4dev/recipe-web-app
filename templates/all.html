@@ -18,14 +18,21 @@
 
 <style>
 .grid {
-  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 20px;
   align-items: start;
+  display:flex;
+  padding:10px 5vw;
+  flex-wrap:wrap;
+  justify-content: center;
+  margin: 0 auto;
+
   }
 .grid > article {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  min-height:200px; cursor:pointer; width:20vw;
+  min-width:300px;
 }
 .grid > article img {
   height: 70%;
@@ -42,46 +49,22 @@
   padding: 10px;
   width: 100%;
   }
+
 </style>
 
-{% for i in range(0,data|length,4) %}
-<main class="grid" style="display:flex;padding:10px 5vw;">
-    <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i].id}}/'">
+<main class="grid">
+    {% for i in range(0,data|length) %}
+    {% if data[i] %}
+    <article onclick="window.location.href='/recipe/{{data[i].id}}/'">
         <img src="{{data[i].img}}" alt="What the item looks like after it has been prepared.">
         <div class="text" style="padding-top:10px">
           <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i].name}}</h2>
           <p class="hMilHP">{{data[i].saves}} saves</p>
         </div>
     </article>
-    {% if data[i+1] %}
-    <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i+1].id}}/'">
-        <img src="{{data[i+1].img}}" alt="What the item looks like after it has been prepared.">
-        <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i+1].name}}</h2>
-          <p class="hMilHP">{{data[i+1].saves}} saves</p>
-        </div>
-    </article>
-    {% endif %}
-    {% if data[i+2] %}
-    <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i+2].id}}/'">
-        <img src="{{data[i+2].img}}" alt="What the item looks like after it has been prepared.">
-        <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i+2].name}}</h2>
-          <p class="hMilHP">{{data[i+2].saves}} saves</p>
-        </div>
-    </article>
-    {% endif %}
-    {% if data[i+3] %}
-    <article style="height:40vh; max-height:40vh; cursor:pointer; width:20vw;" onclick="window.location.href='/recipe/{{data[i+3].id}}/'">
-        <img src="{{data[i+3].img}}" alt="What the item looks like after it has been prepared.">
-        <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i+3].name}}</h2>
-          <p class="hMilHP">{{data[i+3].saves}} saves</p>
-        </div>
-    </article>
     {% endif %}
 
+    {% endfor %}
 </main>
-{% endfor %}
 
 {% endblock %}
