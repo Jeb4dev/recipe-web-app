@@ -121,14 +121,14 @@ def create():
                 new_ingredients.ingredient = ing_name
                 new_ingredients.amount = ing_amount
                 new_ingredients.unit = ing_unit
-
-                print("-----------------------")
-                print(f" meal name: {meal_name}")
-                print(f"{meal_name} ingredients")
-                print(f" ing_name: {ing_name} - {j}_ing_name")
-                print(f" ing_amount: {ing_amount}")
-                print(f" ing_unit: {ing_unit}")
-                print("-----------------------")
+                #
+                # print("-----------------------")
+                # print(f" meal name: {meal_name}")
+                # print(f"{meal_name} ingredients")
+                # print(f" ing_name: {ing_name} - {j}_ing_name")
+                # print(f" ing_amount: {ing_amount}")
+                # print(f" ing_unit: {ing_unit}")
+                # print("-----------------------")
 
                 db.session.add(new_ingredients)
                 while True:
@@ -145,17 +145,17 @@ def create():
 
                         db.session.add(new_ingredients)
 
-                        print("-----------------------")
-                        print(f" meal name: {meal_name}")
-                        print(f"{meal_name} ingredients")
-                        print(f" ing_name: {ing_name} - {j}_ing_name_{i}")
-                        print(f" ing_amount: {ing_amount}")
-                        print(f" ing_unit: {ing_unit}")
-                        print("-----------------------")
+                        # print("-----------------------")
+                        # print(f" meal name: {meal_name}")
+                        # print(f"{meal_name} ingredients")
+                        # print(f" ing_name: {ing_name} - {j}_ing_name_{i}")
+                        # print(f" ing_amount: {ing_amount}")
+                        # print(f" ing_unit: {ing_unit}")
+                        # print("-----------------------")
 
                         i += 1
                     else:
-                        print(f'FAILED to find: {j}_ing_name_{i}')
+                        # print(f'FAILED to find: {j}_ing_name_{i}')
                         break
                     db.session.add(new_dishes)
 
@@ -168,8 +168,10 @@ def create():
         new_user_recipe = UserRecipes(user_id=user_id, recipe_id=new_recipe.id)
         db.session.add(new_user_recipe)
         db.session.commit()
+        print(f"{new_recipe.dish_name} added in index {new_recipe.id}.")
 
         return redirect(url_for('recipe.look', identifier=new_recipe.id))
+
     return render_template("create.html")
 
 
