@@ -3,20 +3,20 @@
 
 
 {% block body %}
-<style>
-    body {color:white;}
-</style>
-<center>
-<h1>Register</h1>
-<form method="post">
-    <p>username:</p>
-    <input type="text" name="username" placeholder="Type username here" required maxlength="32">
-    <p>password:</p>
-    <input type="password" name="password" placeholder="Type password here" required>
-    <br>
-    <br>
-    <button class="btn btn-light">Register</button>
+    <style>
+        body {color: white;}
+    </style>
+    <div class="flex">
+        <h1>Register</h1>
+        <form method="post">
+            <p>username:</p>
+            <input type="text" name="username" placeholder="Type username here" required maxlength="32">
+            <p>password:</p>
+            <input type="password" name="password" placeholder="Type password here" required>
+            <br>
+            <br>
+            <button class="btn btn-light">Register</button>
 
-</form>
-</center>
+        </form>
+    </div>
 {% endblock %}

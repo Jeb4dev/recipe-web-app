@@ -1,250 +1,161 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ingredients.dish_name}}{% endblock %}
-
-{% block custom_css %}
-<link rel="stylesheet" href="/static/css/valio.css">
-
-<script>
-let updated_serving = false
-function copy_url() {
-    var dummy = document.createElement('input'),
-        text = window.location.href;
-
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
-}
-
-function increase(serving, button) {
-        if (updated_serving == false) {updated_serving = Number(serving)}
-        let amounts = document.getElementsByClassName("ing_amount");
-        for (let i = 0; i < amounts.length; i++) {
-          let amount = amounts[i].innerHTML
-          isNum = /\d/.test(amount);
-          if (isNum) {
-            amount = Number(amount)
-            serving = Number(serving)
-            amount = amount / updated_serving * (updated_serving + 1)
-            amount = amount.toFixed(3);
-            amount = amount.toString()
-            amounts[i].innerHTML = amount
-          }
-        }
-
-
-        updated_serving = updated_serving + 1
-        document.getElementById("serving_span").innerHTML = updated_serving
-        document.getElementById("serving_span_1").innerHTML = updated_serving + " serving"
-}
-</script>
-
-{% endblock %}
+{% block title %}{{ ingredients.dish_name }}{% endblock %}
 
 
 {% block body %}
-
-<div id="root">
-    <div class="AppContainer-sc-1cey94w gsfJIy">
-        <div class="ContentWrapper-sc-1ty62xk hgKryJ">
-            <div class="PageWrapper-sc-3x8egk jvkFGd">
-                <div class="PrintHeroWrapper-sc-1t0nd18 daYapA">
-                    <p>DISCLAIMER: The CSS and HTML is taken from <a href="https://www.valio.fi/reseptit/">valio.fi</a> (credits for them) and modified by me (Jeb)</p>
-                    <h1 class="PrintTitle-sc-h5kfzh jTrHRm">{{ingredients.dish_name}}</h1></div>
-                <section class="RecipeHeaderWrapper-sc-19fsov1 iBJlQK">
-                    <header class="Header-sc-1me9z1i duyqa">
-                        <div class="ImageWrapper-sc-ldix2e kwsUNS">
-                            <img alt="{{ingredients.dish_name}}"
-                                 src="{{ingredients.img_url}}"
-                                 style="object-fit:cover;"
-                            />
-                        </div>
-                        <div class="MobileContentWrapper-sc-1lf4z7i comZED">
-                            <h1 class="Title-sc-nktazt jtoCbr">{{ingredients.dish_name}}</h1>
-                            <p class="Description-sc-5dz69c iLmtfb">{{ingredients.description}}</p></div>
-                    </header>
-                    <div class="Specifications-sc-1471dak bexqYQ">
-                        <div id="recipe-info">
-                            <section class="DietSectionWrapper-sc-1w38645 dzuIOE RecipeHeaderLinks-sc-4qgvf7 hqUtGZ">
-                                <div class="RecipeLinks-sc-15l526z BETws recipe-links">
-                                    {% for i in range(ingredients.tags|length) %}
-                                    <a href="/tags/{{ingredients.tags[i]}}"
-                                        class="StyledHighlightedLink-sc-ctill2 iSMraW">{{ingredients.tags[i]}}</a>
-                                    {% endfor %}
-                                </div>
-                                <div class="RecipeLinks-sc-15l526z BETws recipe-links">
-                                    {% for i in range(ingredients.allergens|length) %}
-                                    <a href="/allergens/{{ingredients.allergens[i]}}"
-                                       class="StyledHighlightedLink-sc-ctill2 QdabX">{{ingredients.allergens[i]}}</a>
-                                    {% endfor %}
-                                </div>
-                            </section>
-                            <div class="PreparationBreakdownWrapper-sc-9v0axc eaCaKm">
-                                <dl class="BreakdownList-sc-18tvjek hMilHP">
-                                    <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO">Preparation time</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP">{{ingredients.prep_time}}</dd>
-                                    <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO">cooking time</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP">{{ingredients.cook_time}}</dd>
-                                    <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO total-time">total time</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c jguaJP total-time">{{ingredients.total_time}}</dd>
-                                </dl>
-                                <hr>
-                                <dl class="BreakdownList-sc-18tvjek hMilHP">
-                                    <dt class="BreakdownItemTitle-sc-nm8o2x ehvIlO">Difficulty</dt>
-                                    <dd class="BreakdownItemDefinition-sc-d1jg1c DifficultyLevel-sc-cof5ll jguaJP eMgEkq">
-                                        <span class="DifficultyIconWrapper-sc-8utjyh bgBGBn">{{ingredients.difficulty}}</span>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="Wrapper-sc-1408q9m dsCjBc">
-                    <div class="Actions-sc-fmluxd gpJuhH">
-                        {% if ingredients.saved %}
-                            <button class="eoHmbJ" type="button" onclick="window.location.href = '/recipe/{{ingredients.id}}/unsave/'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                </svg>
-                                Saved
-                            </button>
-                        {% else %}
-                            <button class="eoHmbJ" type="button" onclick="window.location.href = '/recipe/{{ingredients.id}}/save/'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26">
-                                    <path fill="#002f6d"
-                                          d="M6.82 4a4.79 4.79 0 0 0-3.411 1.413 4.83 4.83 0 0 0 0 6.821l9.588 9.587 9.587-9.587a4.828 4.828 0 0 0 0-6.821A4.787 4.787 0 0 0 19.174 4c-1.289 0-2.5.501-3.411 1.413l-2.059 2.058a.999.999 0 0 1-1.414 0l-2.059-2.058A4.788 4.788 0 0 0 6.82 4m6.177 20.235a.993.993 0 0 1-.707-.293L1.995 13.648a6.831 6.831 0 0 1 0-9.649A6.776 6.776 0 0 1 6.82 2c1.823 0 3.536.709 4.825 1.999l1.352 1.351 1.352-1.351A6.772 6.772 0 0 1 19.174 2c1.822 0 3.536.709 4.824 1.999a6.831 6.831 0 0 1 0 9.649L13.704 23.942a.995.995 0 0 1-.707.293"></path>
-                                </svg>
-                                Save
-                            </button>
-                        {% endif %}
-
-                        <button class="eoHmbJ ga-print-recipe" type="button" onclick="window.print()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26">
-                                <path fill="#002f6d"
-                                      d="M22 2c1.103 0 2 .897 2 2v20c0 1.103-.897 2-2 2H4c-1.103 0-2-.897-2-2V4c0-1.103.897-2 2-2h3V1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1h3zm0 22V4h-3c0 1.103-.897 2-2 2H9c-1.103 0-2-.897-2-2H4v20h18zM9 4h8V2H9v2z"></path>
-                                <path fill="#002f6d"
-                                      d="M8 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2M18 10h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2M8 14a1 1 0 1 0 0 2 1 1 0 0 0 0-2M18 14h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2M8 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2M18 18h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2"></path>
-                            </svg>
-                            Print
-                        </button>
-                        <button type="button" class="eoHmbJ ga-print-recipe" onclick="copy_url()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14">
-                                <path fill="#002f6d"
-                                      d="M8 4C2.8 4 0 7.8 0 14C1.5 11.6 2.7 10 8 10V14L16 7L8 0V4Z"></path>
-                            </svg>
-                            Copy link
-                        </button>
-                    </div>
+    <script src=""></script>
+    <div class="flex">
+        <div class="row">
+            <div class="half">
+                <div class="image">
+                    <img alt="{{ ingredients.dish_name }}"
+                         src="{{ ingredients.img_url }}"
+                    />
                 </div>
-
-
-
-                <div class="Section-sc-13jajgc IngredientsSectionWrapper-sc-wm9urx jwrkRn kpVJeA">
-                    <section class="ContentWrapper-sc-6f4e3e Ingredients-sc-fia148 hMvci cbcEaN">
-                        <div class="ContentColumn-sc-166uk83 jUlxLL">
-                            <div id="recipe-ingredients">
-                                <div class="IngredientWrapper-sc-gnq42z glXeqM">
-                                    <div class="HeaderContainerWrapper-sc-1sn2upy fXkwBp">
-                                        <div class="HeaderContentLeft-sc-xu0cj9 cmNdbE"><h2
-                                                class="Header2-sc-s4djmv dguPRK medium-header">ingredients<span
-                                                class="PrintPortion-sc-1oricz ewwgBm" id="serving_span_1">{{ingredients.serving}} serving</span>
-                                        </h2></div>
-                                        <div class="HeaderContentRight-sc-80hs6f bDAozd">
-                                            <div class="PortionCalculatorWrapper-sc-6xtlii lmAKZH ingredients-portion-count">
-                                                <button class="sc-dlnjPT EIiwg adjust-portion"
-                                                        aria-label="-" type="button"
-                                                        onclick="alert('this will be added later')">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                                         viewBox="0 0 26 26"><title>-</title>
-                                                        <rect fill="#fff" x="5" y="12" width="16" height="2"
-                                                              rx="1"></rect>
-                                                    </svg>
-                                                </button>
-                                                <div class="PortionText-sc-c9mfho eovgOX" ><label id="serving_span">{{ingredients.serving}}</label> serving</div>
-                                                <button class="sc-dlnjPT EIiwg adjust-portion"
-                                                        aria-label="+" type="button"
-                                                        onclick="increase('{{ingredients.serving}}')">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                                         viewBox="0 0 26 26"><title>+</title>
-                                                        <path fill="#fff"
-                                                              d="M6 12h14a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"></path>
-                                                        <path fill="#fff"
-                                                              d="M14 6v14a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0z"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="IngredientsWrapper-sc-126201d gyatoS">
-                                        <table class="IngredientsTable-sc-1elxpzj kZEQjw">
-                                            {% for i in range(ingredients.menu|length) %}
-                                                <tbody>
-                                                <tr>
-                                                    <th colSpan="2" class="IngredientSegmentHeader-sc-1ui099s ggNUCf"><h3
-                                                            class="Header3-sc-f2gfzf hFMetU small-header">{{ ingredients.menu[i].name }}</h3>
-                                                    </th>
-                                                </tr>
-                                                {% for j in range(ingredients.menu[i].ingredients|length) %}
-                                                <tr>
-                                                    <td class="IngredientRowLeft-sc-797wx9 czwpuo"><span></span> <!-- -->
-                                                        <span><span class="ing_amount">{{  ingredients.menu[i].ingredients[j].amount }} </span>  <span  class="ing_unit">{{  ingredients.menu[i].ingredients[j].unit }}</span></span></td>
-                                                    <td class="IngredientRowRight-sc-cezl9g pKClh">
-                                                        <div class="IngredientRowRightContainer-sc-16ntnek btAIHd">
-                                                            {{  ingredients.menu[i].ingredients[j].ingredient }}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                {% endfor %}
-                                                </tbody>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="StyledDivider-sc-36zsdt fwlMnD"></div>
-                        <div class="ContentColumn-sc-166uk83 jUlxLL jUlxLC">
-                            <div id="recipe-instructions">
-                                <div class="InstructionsListWrapper-sc-11hdvkg hqtxIa">
-                                    <div class="HeaderWrapper-sc-1st7l5e geDimJ"><h2
-                                            class="Header2-sc-s4djmv dguPRK medium-header">Instructions</h2></div>
-                                    <ol class="InstructionsWrapper-sc-57tfo1 fFOvvG">
-
-                                        {% for i in range(ingredients.instructions|length) %}
-                                        <li>
-                                            <div class="InstructionsRow-sc-1i4flbr dhaiiv">
-                                                <div class="InstructionsRowLeft-sc-1nuhq29 swhxe">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
-                                                         viewBox="0 0 12 12">
-                                                        <circle fill="#eee" cx="6" cy="6" r="6"></circle>
-                                                    </svg>
-                                                </div>
-                                                <div class="InstructionsRowRight-sc-7nfq7e bQTRJt">{{ingredients.instructions[i]}}
-                                                </div>
-                                            </div>
-                                            <div class="InstructionsRow-sc-1i4flbr dhaiiv">
-                                                <div class="InstructionsRowLeft-sc-1nuhq29 swhxe"></div>
-                                                <div class="InstructionsRowRight-sc-7nfq7e bQTRJt"></div>
-                                            </div>
-                                        </li>
-
-                                        {% endfor %}
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                <div class="content">
+                    <h1 class="recipe-header">{{ ingredients.dish_name }}</h1>
+                    <p>{{ ingredients.description }}</p>
                 </div>
+            </div>
+            <div class="half">
+                <div class="info">
+                    <h3>Timing and Difficulty</h3>
+                    <br>
+                    <dl class="timing">
+                        <dt>Preparation time</dt>
+                        <dd>{{ ingredients.prep_time }}</dd>
+                        <dt>cooking time</dt>
+                        <dd>{{ ingredients.cook_time }}</dd>
+                        <dt>total time</dt>
+                        <dd>{{ ingredients.total_time }}</dd>
+                    </dl>
+                    <br>
+                    <dl class="difficulty">
+                        <dt>Difficulty</dt>
+                        <dd>
+                            <span>{{ ingredients.difficulty }}</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
 
+        <div>
+            <div class="interactions">
+                {% if ingredients.saved %}
+                    <button class="btn btn-danger" type="button"
+                            onclick="window.location.href = '/recipe/{{ ingredients.id }}/unsave/'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                             class="svg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                        </svg>
+                        Saved
+                    </button>
+                {% else %}
+                    <button class="btn btn-danger" type="button"
+                            onclick="window.location.href = '/recipe/{{ ingredients.id }}/save/'">
+                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26">
+                            <path fill="#FFF"
+                                  d="M6.82 4a4.79 4.79 0 0 0-3.411 1.413 4.83 4.83 0 0 0 0 6.821l9.588 9.587 9.587-9.587a4.828 4.828 0 0 0 0-6.821A4.787 4.787 0 0 0 19.174 4c-1.289 0-2.5.501-3.411 1.413l-2.059 2.058a.999.999 0 0 1-1.414 0l-2.059-2.058A4.788 4.788 0 0 0 6.82 4m6.177 20.235a.993.993 0 0 1-.707-.293L1.995 13.648a6.831 6.831 0 0 1 0-9.649A6.776 6.776 0 0 1 6.82 2c1.823 0 3.536.709 4.825 1.999l1.352 1.351 1.352-1.351A6.772 6.772 0 0 1 19.174 2c1.822 0 3.536.709 4.824 1.999a6.831 6.831 0 0 1 0 9.649L13.704 23.942a.995.995 0 0 1-.707.293"></path>
+                        </svg>
+                        Save
+                    </button>
+                {% endif %}
 
+                <button class="btn btn-secondary" type="button" onclick="window.print()">
+                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26">
+                        <path fill="#FFF"
+                              d="M22 2c1.103 0 2 .897 2 2v20c0 1.103-.897 2-2 2H4c-1.103 0-2-.897-2-2V4c0-1.103.897-2 2-2h3V1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1h3zm0 22V4h-3c0 1.103-.897 2-2 2H9c-1.103 0-2-.897-2-2H4v20h18zM9 4h8V2H9v2z"></path>
+                        <path fill="#FFF"
+                              d="M8 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2M18 10h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2M8 14a1 1 0 1 0 0 2 1 1 0 0 0 0-2M18 14h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2M8 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2M18 18h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2"></path>
+                    </svg>
+                    Print
+                </button>
 
+                <button class="btn btn-dark" type="button" onclick="copy_url()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14">
+                        <path fill="#FFF"
+                              d="M8 4C2.8 4 0 7.8 0 14C1.5 11.6 2.7 10 8 10V14L16 7L8 0V4Z"></path>
+                    </svg>
+                    Copy url
+                </button>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="half">
+                <h2>
+                    Ingredients
+                    <span style="margin-left: 3rem; white-space: nowrap">
+                    <button class="btn-ingredient" aria-label="-" type="button" onclick="alert('this will be added later')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+                    <title>-</title>
+                    <rect fill="#fff" x="5" y="12" width="16" height="2" rx="1"></rect>
+                </svg>
+            </button>
+            <span class="serving"><label
+                    id="serving_span">{{ ingredients.serving }}</label> serving
+            </span>
+            <button class="btn-ingredient" aria-label="+" type="button"
+                    onclick="increase('{{ ingredients.serving }}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+                    <title>+</title>
+                    <path fill="#fff" d="M6 12h14a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"></path>
+                    <path fill="#fff" d="M14 6v14a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0z"></path>
+                </svg>
+            </button>
+        </span>
+                </h2>
+                <table class="IngredientsTable-sc-1elxpzj kZEQjw">
+                    {% for i in range(ingredients.menu|length) %}
+                        <tbody>
+                        <tr>
+                            <th colSpan="2">
+                                <div class="pad-bot-1"></div>
+                                <h3 class="recipe">{{ ingredients.menu[i].name }}</h3>
+                                <div class="pad-bot-1"></div>
+                            </th>
+                        </tr>
+                        {% for j in range(ingredients.menu[i].ingredients|length) %}
+                            <tr>
+                                <td style="text-align: right; padding: 5px 15px;">
+                                    <span class="ing_amount"> {{ ingredients.menu[i].ingredients[j].amount }} </span>
+                                    <span class="ing_unit"> {{ ingredients.menu[i].ingredients[j].unit }} </span>
+                                </td>
+                                <td>
+                                    <div>
+                                        {{ ingredients.menu[i].ingredients[j].ingredient }}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="half">
+                <h2>Instruction</h2>
+                <ol>
+
+                    {% for i in range(ingredients.instructions|length) %}
+                        <li style="list-style-type: none;">
+                            <div style="display: flex; padding-bottom: 10px">
+                                <div style="text-align: left; width: 30px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 12 12">
+                                        <circle fill="#eee" cx="6" cy="6" r="6"></circle>
+                                    </svg>
+                                </div>
+                                <div class="instruction">
+                                    {{ ingredients.instructions[i] }}
+                                </div>
+                            </div>
+                        </li>
+
+                    {% endfor %}
+                </ol>
             </div>
         </div>
     </div>
-</div>
-
 {% endblock %}

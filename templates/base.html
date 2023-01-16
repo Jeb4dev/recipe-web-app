@@ -4,22 +4,28 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Recipe Storage">
+    <meta name="keywords" content="Devjam, Recipe, Recipe Storage">
+    <meta name="author" content="Jeb">
 
     <!-- Favicon    -->
     <link rel="icon" type="image/x-icon" href="/static/favicon/food.png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
     <title>{% block title %}{% endblock %}</title>
-    {% block custom_css %}{% endblock %}
 
 
 </head>
 <body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" style="position: fixed; width:100%; z-index: 2;">
     <div class="container">
         <a class="navbar-brand" href="/">Recipe App</a>
@@ -30,21 +36,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item disable-list">
-                    <a class="nav-link" href="/recipe/"  style="color:#ad2831;">Browse Recipes</a>
+                    <a class="nav-link" href="/recipe/" style="color:#ad2831;">Browse Recipes</a>
                 </li>
                 <li class="nav-item disable-list">
                     <a class="nav-link" href="/recipe/create/" style="color:#ad2831;">Create</a>
                 </li>
                 {% if current_user.is_authenticated %}
-                <li class="nav-item disable-list">
-                    <a class="nav-link" href="/recipe/saved/" style="color:#ad2831;">Saved</a>
-                </li>
+                    <li class="nav-item disable-list">
+                        <a class="nav-link" href="/recipe/saved/" style="color:#ad2831;">Saved</a>
+                    </li>
                 {% endif %}
             </ul>
             <div class="navbar-nav">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Soon..." aria-label="Search" title="To be added later" style="min-width:70%;" disabled>
-                    <button class="btn btn-outline-danger" type="submit" style="color:#ad2831; border-color:#ad2831; margin-right:200px;" disabled>Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search coming soon..." aria-label="Search"
+                           title="To be added later" style="min-width:70%;" disabled>
+                    <button class="btn btn-outline-danger" type="submit"
+                            style="color:#ad2831; border-color:#ad2831; margin: 0 200px 0 0; padding: .375rem .75rem" disabled>Search
+                    </button>
                 </form>
             </div>
 
@@ -61,7 +70,8 @@
                         <a class="nav-link" href="/account/register" style="color:#ad2831;">
                             Register</a>
                     {% endif %}
-                    <a class="nav-link" href="https://github.com/JesperKauppinen/recipe-web-app" target="_blank" title="Github" style="color:#ad2831;">
+                    <a class="nav-link" href="https://github.com/JesperKauppinen/recipe-web-app" target="_blank"
+                       title="Github" style="color:#ad2831;">
                         <i class="fa fa-github"></i>
                     </a>
                 </div>

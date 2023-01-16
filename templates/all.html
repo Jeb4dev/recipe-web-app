@@ -2,17 +2,6 @@
 
 {% block title %}{{title}}{% endblock %}
 
-{% block custom_css %}
-<link rel="stylesheet" href="/static/css/valio.css">
-
-<script>
-
-
-</script>
-
-
-{% endblock %}
-
 
 {% block body %}
 
@@ -51,7 +40,7 @@
     <article onclick="window.location.href='/recipe/{{data[i].id}}/'">
         <img src="{{data[i].img}}" alt="What the item looks like after it has been prepared.">
         <div class="text" style="padding-top:10px">
-          <h2 class="Header2-sc-s4djmv dguPRK medium-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i].name}}</h2>
+          <h2 class="all-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%; ">{{data[i].name}}</h2>
           <p class="hMilHP">{{data[i].saves}} saves</p>
         </div>
     </article>
