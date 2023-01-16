@@ -1,0 +1,243 @@
+h1 {
+    font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+    position: relative;
+    color: #640d14;
+    text-align: center;
+    margin: 8px 0 16px;
+}
+
+h2 {
+    font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+    font-weight: 900;
+    color: #640d14;
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 38px;
+    margin: 0 0 20px;
+}
+
+h3 {
+    font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    color: #640d14;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    color: #640d14;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@media only screen and (min-width: 1200px) {
+    .flex {
+        width: 67%;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .half {
+        flex: 50%!important;
+    }
+}
+
+.half {
+    flex: 100%;
+}
+
+.image {
+    width: 100%;
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 25rem;
+}
+
+.row {
+    width: 100%;
+    margin: 3rem 0;
+}
+
+.recipe-header {
+    text-align: left;
+    margin: 2rem 0;
+}
+
+.content {
+    margin-right: 1rem;
+}
+
+.btn {
+    color: #FFF;
+    width: 10rem;
+    margin: 10px;
+    padding: 10px 0;
+}
+
+.btn-ingredient {
+    outline: none;
+    border: 1px solid #ad2831;
+    background-color: #ad2831;
+    border-radius: 4px;
+    height: 38px;
+    width: 38px;
+    padding: 1px 6px;
+    flex: 0 0 auto;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.svg {
+    vertical-align: middle;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.serving {
+    font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: normal;
+    padding: 0 19px;
+    color: #640d14;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.instruction {
+    font-family: omnes-pro, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    color: #333;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.pad-bot-1 {
+    padding-bottom: 1rem;
+}
+
+
+/***********/
+/* Create */
+/*********/
+.input_field {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 18px;
+    background-color: #fff;
+    color: #200;
+}
+
+.input_help {
+    float: right;
+    padding-right: 5px;
+    cursor: help;
+}
+
+.input_help:hover {
+    color: #ad2831;
+}
+
+form {
+    width: 70%;
+}
+
+.form_header {
+    padding-top: 100px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 10px;
+    grid-auto-flow: row;
+}
+
+
+.ingredient {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.amount {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.unit {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.container_2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0px 10px;
+    grid-auto-flow: row;
+}
+
+.url {
+    grid-area: 1 / 2 / 1 / 1;
+}
+
+.upload {
+    grid-area: 1 / 2 / 3 / 2;
+}
+
+.ingredient_table {
+    border-radius: 2px;
+    border: solid #eee;
+    background-color: #eee;
+    padding-top: 10px;
+
+}
+
+.meal {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 2px;
+    border: solid #ddd;
+    background-color: #ddd;
+}
+
+
+
+/* All Recipes */
+
+.all-header {
+    font-family:proxima-nova,"Open Sans",Arial,sans-serif;
+    font-weight:900;
+    line-height:1;
+    color:#640d14;
+    font-size:24px;
+    text-transform:uppercase;
+}
+
+.all-content {
+    margin:0;
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-flex-wrap:wrap;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    color:#640d14;
+}
