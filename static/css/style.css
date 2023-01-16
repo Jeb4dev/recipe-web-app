@@ -54,6 +54,9 @@ h4 {
     .half {
         flex: 50%!important;
     }
+    .centered {
+        width: 33%!important;
+    }
 }
 
 .half {
@@ -240,4 +243,21 @@ form {
     -ms-flex-wrap:wrap;
     flex-wrap:wrap;
     color:#640d14;
+}
+
+/* register / login */
+
+.centered {
+    margin: auto;
+    width: 100%;
+}
+form h3 {
+    font-size: 24px;
+    padding-top: 2rem;
+}
+
+form input,
+form button {
+    width: 150% !important;
+    margin: 0 !important;
 }
